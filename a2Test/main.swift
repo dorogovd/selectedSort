@@ -20,25 +20,25 @@ default array = \(internalArray)
     var smallestIndex = internalArray.startIndex
     var comparedIndex = internalArray.startIndex + 1
     
-    printResult(numberOfIteration: 1)
-    if  smallestIndex == comparedIndex {
+    let idx0 = printResult(numberOfIteration: 1, smallestIndex: smallestIndex)
+    if  idx0 == comparedIndex {
         comparedIndex = 2
     }
     
-    printResult(numberOfIteration: 1.1)
-    if  smallestIndex == comparedIndex {
+    let idx1 = printResult(numberOfIteration: 1.1, smallestIndex: idx0)
+    if  idx1 == comparedIndex {
         comparedIndex = 3
     }
 
-    printResult(numberOfIteration: 1.2)
-    if  smallestIndex == comparedIndex {
+    let idx2 = printResult(numberOfIteration: 1.2, smallestIndex: idx1)
+    if  idx2 == comparedIndex {
         comparedIndex = 4
     }
     
-    printResult(numberOfIteration: 1.3)
+    let idx3 = printResult(numberOfIteration: 1.3, smallestIndex: idx2)
     
-    internalArray.insert(internalArray[smallestIndex], at: 0)
-    internalArray.remove(at: smallestIndex + 1)
+    internalArray.insert(internalArray[idx3], at: 0)
+    internalArray.remove(at: idx3 + 1)
     
     print("""
             1st cycle result - \(internalArray)
@@ -48,20 +48,20 @@ default array = \(internalArray)
     smallestIndex = internalArray.startIndex + 1
     comparedIndex = 2
     
-    printResult(numberOfIteration: 2)
-    if  smallestIndex == comparedIndex {
+    let idx4 = printResult(numberOfIteration: 2, smallestIndex: smallestIndex)
+    if  idx4 == comparedIndex {
         comparedIndex = 3
     }
 
-    printResult(numberOfIteration: 2.1)
-    if  smallestIndex == comparedIndex {
+    let idx5 = printResult(numberOfIteration: 2.1, smallestIndex: idx4)
+    if  idx5 == comparedIndex {
         comparedIndex = 4
     }
 
-    printResult(numberOfIteration: 2.2)
+    let idx6 = printResult(numberOfIteration: 2.2, smallestIndex: idx5)
     
-    internalArray.insert(internalArray[smallestIndex], at: 1)
-    internalArray.remove(at: smallestIndex + 1)
+    internalArray.insert(internalArray[idx6], at: 1)
+    internalArray.remove(at: idx6 + 1)
     
     print("""
             2nd cycle result - \(internalArray)
@@ -71,15 +71,15 @@ default array = \(internalArray)
     smallestIndex = internalArray.startIndex + 2
     comparedIndex = 3
     
-    printResult(numberOfIteration: 3)
-    if  smallestIndex == comparedIndex {
+    let idx7 = printResult(numberOfIteration: 3, smallestIndex: smallestIndex)
+    if  idx7 == comparedIndex {
         comparedIndex = 4
     }
     
-    printResult(numberOfIteration: 3.1)
+    let idx8 = printResult(numberOfIteration: 3.1, smallestIndex: idx7)
     
-    internalArray.insert(internalArray[smallestIndex], at: 2)
-    internalArray.remove(at: smallestIndex + 1)
+    internalArray.insert(internalArray[idx8], at: 2)
+    internalArray.remove(at: idx8 + 1)
     
     
     print("""
@@ -90,10 +90,10 @@ default array = \(internalArray)
     smallestIndex = internalArray.startIndex + 3
     comparedIndex = 4
     
-    printResult(numberOfIteration: 4.0)
+    let idx9 = printResult(numberOfIteration: 4.0, smallestIndex: smallestIndex)
 
-    internalArray.insert(internalArray[smallestIndex], at: 3)
-    internalArray.remove(at: smallestIndex + 1)
+    internalArray.insert(internalArray[idx9], at: 3)
+    internalArray.remove(at: idx9 + 1)
     
     
     print("""
@@ -103,20 +103,24 @@ default array = \(internalArray)
             
             """)
     
-    func printResult(numberOfIteration: Double) {
+    func printResult(numberOfIteration: Double, smallestIndex: Int) -> Int {
         var result = internalArray[comparedIndex] < internalArray[smallestIndex]
+        var tempSmallestIndex = smallestIndex
+   //     var tempComparedIndex = comparedIndex
+        
         print("""
         ITERATION \(numberOfIteration) :
-        compared numbers: \(internalArray[comparedIndex]) < \(internalArray[smallestIndex]) -> \(result)
+        compared numbers: \(internalArray[comparedIndex]) < \(internalArray[tempSmallestIndex]) -> \(result)
 
         """)
         if result == true {
-            smallestIndex = comparedIndex
+            tempSmallestIndex = comparedIndex
         } else if comparedIndex == 4 && result == false {
-             comparedIndex = smallestIndex + 1
+             comparedIndex = tempSmallestIndex + 1
         } else {
             comparedIndex += 1
         }
+        return tempSmallestIndex
     }
 }
 
