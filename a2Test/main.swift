@@ -7,16 +7,18 @@
 
 import Foundation
     
-func selectionSort(_ array: inout [Int]) {
+func selectionSort(_ array: [Int]) {
+    
+    var internalArray = array
     print("""
 
 SELECTION SORT - DOOSHNILA EDITION
 
-default array = \(array)
+default array = \(internalArray)
 
 """)
-    var smallestIndex = array.startIndex
-    var comparedIndex = array.startIndex + 1
+    var smallestIndex = internalArray.startIndex
+    var comparedIndex = internalArray.startIndex + 1
     
     printResult(numberOfIteration: 1)
     if  smallestIndex == comparedIndex {
@@ -35,15 +37,15 @@ default array = \(array)
     
     printResult(numberOfIteration: 1.3)
     
-    array.insert(array[smallestIndex], at: 0)
-    array.remove(at: smallestIndex + 1)
+    internalArray.insert(internalArray[smallestIndex], at: 0)
+    internalArray.remove(at: smallestIndex + 1)
     
     print("""
-            1st cycle result - \(array)
+            1st cycle result - \(internalArray)
             
             """)
     
-    smallestIndex = array.startIndex + 1
+    smallestIndex = internalArray.startIndex + 1
     comparedIndex = 2
     
     printResult(numberOfIteration: 2)
@@ -58,15 +60,15 @@ default array = \(array)
 
     printResult(numberOfIteration: 2.2)
     
-    array.insert(array[smallestIndex], at: 1)
-    array.remove(at: smallestIndex + 1)
+    internalArray.insert(internalArray[smallestIndex], at: 1)
+    internalArray.remove(at: smallestIndex + 1)
     
     print("""
-            2nd cycle result - \(array)
+            2nd cycle result - \(internalArray)
             
             """)
     
-    smallestIndex = array.startIndex + 2
+    smallestIndex = internalArray.startIndex + 2
     comparedIndex = 3
     
     printResult(numberOfIteration: 3)
@@ -76,36 +78,36 @@ default array = \(array)
     
     printResult(numberOfIteration: 3.1)
     
-    array.insert(array[smallestIndex], at: 2)
-    array.remove(at: smallestIndex + 1)
+    internalArray.insert(internalArray[smallestIndex], at: 2)
+    internalArray.remove(at: smallestIndex + 1)
     
     
     print("""
-            3rd cycle result - \(array)
+            3rd cycle result - \(internalArray)
             
             """)
     
-    smallestIndex = array.startIndex + 3
+    smallestIndex = internalArray.startIndex + 3
     comparedIndex = 4
     
     printResult(numberOfIteration: 4.0)
 
-    array.insert(array[smallestIndex], at: 3)
-    array.remove(at: smallestIndex + 1)
+    internalArray.insert(internalArray[smallestIndex], at: 3)
+    internalArray.remove(at: smallestIndex + 1)
     
     
     print("""
-            FINAL RESULT - \(array)
+            FINAL RESULT - \(internalArray)
             
             ARRAY IS SORTED
             
             """)
     
     func printResult(numberOfIteration: Double) {
-        var result = array[comparedIndex] < array[smallestIndex]
+        var result = internalArray[comparedIndex] < internalArray[smallestIndex]
         print("""
         ITERATION \(numberOfIteration) :
-        compared numbers: \(array[comparedIndex]) < \(array[smallestIndex]) -> \(result)
+        compared numbers: \(internalArray[comparedIndex]) < \(internalArray[smallestIndex]) -> \(result)
 
         """)
         if result == true {
@@ -117,6 +119,14 @@ default array = \(array)
         }
     }
 }
+
+
+var array = [10, 9, 2, 0, 6]
+selectionSort(array)
+
+//var array = [Int(item1), Int(item2), Int(item3), Int(item4), Int(item5)]
+
+
 
 print("Enter your first number in array")
 let item1 = readLine()
@@ -143,8 +153,3 @@ let item5 = readLine()
 guard let item5 = Int(item5!) else {
     fatalError("It is not a number")
 }
-
-var array = [Int(item1), Int(item2), Int(item3), Int(item4), Int(item5)]
-selectionSort(&array)
-
-
