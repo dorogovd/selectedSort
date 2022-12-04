@@ -6,8 +6,6 @@
 //
 
 import Foundation
-
-print ("Liza, accept my code!")
     
 func selectionSort(_ array: inout [Int]) {
     print("""
